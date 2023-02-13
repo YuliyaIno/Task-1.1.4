@@ -67,6 +67,7 @@ public class UserDaoJDBCImpl implements UserDao {
         }
     }
 
+    @Override
     public List<User> getAllUsers() {
         List<User> allUsers = new ArrayList<>();
         try (Statement stmt = connection.createStatement()) {

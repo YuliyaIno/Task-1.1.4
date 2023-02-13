@@ -9,9 +9,6 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.Properties;
 
-import static org.hibernate.cfg.AvailableSettings.DIALECT;
-
-
 public class Util {
     public static final String USER_NAME = "postgres";
     public static final String PASSWORD = "Qwerty1";
@@ -35,12 +32,12 @@ public class Util {
 
     public static SessionFactory getSessionFactory() {
         Properties properties = new Properties();
-        properties.setProperty("hibernate.dialect", DIALECT);
+        properties.setProperty("dialect", "org.hibernate.dialect.PostgreSQL82Dialect");
         properties.setProperty("hibernate.connection.url", URL);
         properties.setProperty("hibernate.connection.username", USER_NAME);
         properties.setProperty("hibernate.connection.password", PASSWORD);
         properties.setProperty("hibernate.connection.driver_class", DRIVER);
-// properties.setProperty("hibernate.hbm2ddl.auto", UPDATE);
+        properties.setProperty("hibernate.hbm2ddl.auto", "update");
         return new Configuration().addProperties(properties).addAnnotatedClass(User.class).buildSessionFactory();
     }
 }
